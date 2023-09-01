@@ -14,16 +14,23 @@ class DataManager {
     
     var tmdbMedia = NetworkManager.shared
     
-    var movieData: [Result]?
-    var tvData: [Result]?
+    var movieData: [Result?] = []
+    var tvData: [Result?] = []
     
     func callRequest(completionHandler: @escaping([Result?], [Result?]) -> Void) {
         
         tmdbMedia.callRequest { allData in
-            self.movieData = allData?.results.filter { $0.mediaType == .movie}
-            self.tvData = allData?.results.filter { $0.mediaType == .tv}
-            guard let movieData = self.movieData, let tvData = self.tvData else { return }
-            completionHandler(movieData, tvData)
+            
+            
+            guard let allData else { return }
+            
+            
+            self.movieData = allData.results.filter { $0.mediaType == .movie}
+            self.tvData = allData.results.filter { $0.mediaType == .tv}
+            
+            
+            print("Data 여기는 어떻게 탐?",self.movieData, self.tvData)
+            completionHandler(self.movieData, self.tvData)
         }
         
       

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class TableViewCell : UITableViewCell {
+class MovieTableViewCell : UITableViewCell {
     
     let mediaImageView = {
        let image = UIImageView()
@@ -39,7 +39,7 @@ class TableViewCell : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureView()
-        setConstraints()
+       setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -55,22 +55,34 @@ class TableViewCell : UITableViewCell {
     func setConstraints() {
         mediaImageView.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview().inset(10)
-            print(mediaImageView.frame.height)
             make.width.equalTo(80)
+            make.height.equalTo(mediaImageView.snp.width)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
             make.leading.equalTo(mediaImageView.snp.trailing).offset(10)
         }
         
         descriptionLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.leading.equalTo(mediaImageView.snp.trailing).offset(10)
-            make.bottom.trailing.equalToSuperview().inset(5)
-            
+            make.bottom.equalTo(mediaImageView.snp.bottom)
+            make.trailing.equalToSuperview().inset(10)
         }
+        
+    }
+    
+    func changeSetConstraint() {
+        mediaImageView.snp.remakeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        mediaImageView.image = nil
     }
     
 }

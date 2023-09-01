@@ -13,7 +13,8 @@ class CustomView: UIView {
     let tableView = {
         let tableView = UITableView()
         tableView.rowHeight = 100
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: String(describing: TableViewCell.self))
+        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: String(describing: MovieTableViewCell.self))
+        tableView.register(TVTableViewCell.self, forCellReuseIdentifier: String(describing: TVTableViewCell.self))
         return tableView
     }()
     

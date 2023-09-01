@@ -37,6 +37,10 @@ struct Result: Codable {
         case voteAverage = "vote_average"
         case name
     }
+    
+    var imageUrl: String {
+        return "https://www.themoviedb.org/t/p/w600_and_h900_bestv2" + posterPath!
+    }
 }
 
 enum MediaType: String, Codable {
