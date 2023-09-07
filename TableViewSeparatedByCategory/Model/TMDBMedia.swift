@@ -9,11 +9,11 @@ import Foundation
 // MARK: - TMDBMedia
 struct TMDBMedia: Codable {
     
-    let results: [Result]
+    let results: [TMDBResult]
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct TMDBResult: Codable {
     let id: Int
     // movie 이름
     let title: String?
